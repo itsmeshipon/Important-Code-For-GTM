@@ -1,0 +1,30 @@
+function() {
+  var currencyToCountry = {
+    'USD': 'US',
+    'EUR': 'DE',
+    'BDT': 'BD',
+    'GBP': 'UK',
+    'CAD': 'CA',
+    'AUD': 'AU',
+    'INR': 'IN',
+    'PKR': 'PK'
+  };
+
+  var currency = window.dataLayer.find(function(obj) {
+    return obj.hasOwnProperty('ecommerce') && obj.ecommerce.hasOwnProperty('currency');
+  })?.ecommerce.currency || 'USD'; // Default to USD if not found
+
+  var itemsArray = window.dataLayer.find(function(obj) {
+    return obj.hasOwnProperty('ecommerce') && obj.ecommerce.hasOwnProperty('items');
+  })?.ecommerce.items || []; // Default to empty array if not found
+
+  var countryCode = currencyToCountry[currency] || 'US';
+  var remarketingItems = itemsArray.map(function(product) {
+    return {
+      id: 'shopify_' + countryCode + '_' + product.item_id + '_' + product.item_variant,
+      google_business_vertical: 'retail'
+    };
+  });
+
+  return remarketingItems;
+}
