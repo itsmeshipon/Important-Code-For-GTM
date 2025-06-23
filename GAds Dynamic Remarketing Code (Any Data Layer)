@@ -1,0 +1,10 @@
+function(){
+var products = {{Ecommerce Items}};
+
+ return products.map(function(product) {
+       return {
+       "id": +(product.item_id),
+       "google_business_vertical": 'retail'
+       }
+ });
+}
