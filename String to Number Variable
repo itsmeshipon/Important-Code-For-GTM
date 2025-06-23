@@ -1,0 +1,10 @@
+function() {
+    // Replace 'yourStringVariableName' with the actual GTM variable name
+    var stringVariable = {{yourStringVariableName}};
+    // Ensure the variable exists and is not null
+    if (stringVariable) {
+        return Number(stringVariable);
+    } else {
+        return 0; // Default value if the string variable is null or undefined
+    }
+}
