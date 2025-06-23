@@ -1,0 +1,3 @@
+function(){
+return window.performance.getEntriesByType('navigation').map(function(nav){ return nav.type}).includes('reload')
+}
