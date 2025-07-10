@@ -1,0 +1,19 @@
+function() {
+  var itemsArray = {{dlv - ecommerce_items}};
+  
+  if (itemsArray && itemsArray.length > 0) {
+    // Check if there's only one item
+    if (itemsArray.length === 1) {
+
+      return itemsArray[0].item_name; // Return the item_id as a string for a single product
+    } else {
+     
+ // If there are multiple items, return an array of item_ids
+      return itemsArray.map(function(product) {
+        return product.item_name;
+      });
+    }
+  } else {
+    return undefined; // Handle the case where itemsArray is undefined or empty
+  }
+}
